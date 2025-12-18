@@ -30,9 +30,13 @@ $$\text{Voltage} = \frac{\text{Raw ADC Value} \times 3.3V}{4095}$$
 
 I built a test bench using an **ESP32** to validate the system:
 
-1.  The ESP32 acts as a DAC, generating stepped analog voltages (**0V, 1V, 2V, 3V**) fed into the STM32's `PA0` pin.
+1.  The ESP32 acts as a DAC, generating stepped analog voltages (**0V, 1V, 2V, 3V**) each for 5 seconds in a cycle fed into the STM32's `PA0` pin.
 2.  The STM32 reads these values and transmits the result back via UART.
 3.  The ESP32 reads the UART response, and the data is verified using **CoolTerm** on the PC.
+
+
+https://github.com/user-attachments/assets/39b8b1bd-aa69-433f-aa55-b9c7a7b66483
+
 
 ### 🚀 How It Works (Code Flow)
 1.  **Timer3** runs in the background and triggers the ADC exactly 100 times per second.

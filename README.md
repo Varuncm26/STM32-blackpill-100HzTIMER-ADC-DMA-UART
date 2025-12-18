@@ -46,3 +46,7 @@ https://github.com/user-attachments/assets/39b8b1bd-aa69-433f-aa55-b9c7a7b66483
 3.  A **Callback Flag** is set to notify the main loop that new data is ready.
 4.  The Main Loop calculates the voltage and formats a string.
 5.  **UART DMA** transmits the data asynchronously. A `uart_busy` flag ensures we don't overwrite the buffer while transmission is active.
+
+   ---
+**Varun C M**
+Anna University - MIT Campus, Chennai

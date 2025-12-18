@@ -34,6 +34,8 @@ I built a test bench using an **ESP32** to validate the system:
 2.  The STM32 reads these values and transmits the result back via UART.
 3.  The ESP32 reads the UART response, and the data is verified using **CoolTerm** on the PC.
 
+   ![WhatsApp Image 2025-12-18 at 8 46 34 PM](https://github.com/user-attachments/assets/ea5ae0a5-128d-4c1d-9e4d-13752c237bc2)
+
 
 https://github.com/user-attachments/assets/39b8b1bd-aa69-433f-aa55-b9c7a7b66483
 

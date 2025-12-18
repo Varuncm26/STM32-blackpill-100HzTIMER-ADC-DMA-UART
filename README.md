@@ -1,6 +1,6 @@
 ## ⚡ STM32 Timer-Triggered ADC (DMA & UART)
 
-This project implements a precise, non-blocking data acquisition system using the **STM32F103 (Blackpill)**. Instead of relying on CPU delays, it uses a hardware timer (TIM3) to trigger ADC conversions every 10ms. The results are processed and transmitted via UART using **Direct Memory Access (DMA)**, leaving the CPU free for other tasks.
+This project implements a precise, non-blocking data acquisition system using the **STM32F103 (Blackpill)**. it uses a hardware timer (TIM3) to trigger ADC conversions every 10ms. The results are processed and transmitted via UART using **Direct Memory Access (DMA)**.
 
 ### 🛠 System Configuration
 
@@ -12,7 +12,7 @@ This project implements a precise, non-blocking data acquisition system using th
 | **Timer Prescaler** | `7199` | Reduces 72MHz to 10kHz |
 | **Timer Period** | `99` | 10kHz / 100 ticks = 100Hz |
 
-### 🧮 The Math Behind The Timing
+### 🧮 Timing
 
 To achieve the precise **100Hz** sampling rate, I configured **TIM3** with the following logic:
 
@@ -30,13 +30,13 @@ $$\text{Voltage} = \frac{\text{Raw ADC Value} \times 3.3V}{4095}$$
 
 I built a test bench using an **ESP32** to validate the system:
 
-1.  **Signal Generation:** The ESP32 acts as a DAC, generating stepped analog voltages (**0V, 1V, 2V, 3V**) fed into the STM32's `PA0` pin.
-2.  **Data Logging:** The STM32 reads these values and transmits the result back via UART.
-3.  **Verification:** The ESP32 reads the UART response, and the data is verified using **CoolTerm** on the PC.
+1.  The ESP32 acts as a DAC, generating stepped analog voltages (**0V, 1V, 2V, 3V**) fed into the STM32's `PA0` pin.
+2.  The STM32 reads these values and transmits the result back via UART.
+3.  The ESP32 reads the UART response, and the data is verified using **CoolTerm** on the PC.
 
 ### 🚀 How It Works (Code Flow)
 1.  **Timer3** runs in the background and triggers the ADC exactly 100 times per second.
-2.  **ADC1** performs the conversion and uses **DMA** to store the raw value directly into a memory buffer (no CPU intervention).
+2.  **ADC1** performs the conversion and uses **DMA** to store the raw value directly into a memory buffer .
 3.  A **Callback Flag** is set to notify the main loop that new data is ready.
 4.  The Main Loop calculates the voltage and formats a string.
 5.  **UART DMA** transmits the data asynchronously. A `uart_busy` flag ensures we don't overwrite the buffer while transmission is active.

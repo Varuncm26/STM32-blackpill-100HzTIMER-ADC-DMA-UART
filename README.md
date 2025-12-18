@@ -40,7 +40,7 @@ I built a test bench using an **ESP32** to validate the system:
 https://github.com/user-attachments/assets/39b8b1bd-aa69-433f-aa55-b9c7a7b66483
 
 
-### 🚀 How It Works (Code Flow)
+### 🚀Code Flow
 1.  **Timer3** runs in the background and triggers the ADC exactly 100 times per second.
 2.  **ADC1** performs the conversion and uses **DMA** to store the raw value directly into a memory buffer .
 3.  A **Callback Flag** is set to notify the main loop that new data is ready.
